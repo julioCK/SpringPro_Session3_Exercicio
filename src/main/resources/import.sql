@@ -1,0 +1,15 @@
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Ana Beatriz Lima', '123.456.789-01', 4500.00, DATE '1990-03-15', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Carlos Eduardo Silva', '987.654.321-00', 7500.50, DATE '1985-11-23', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Fernanda Souza', '321.654.987-12', 6200.00, DATE '1992-07-09', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('João Pedro Mendes', '654.123.789-45', 3100.75, DATE '1998-01-30', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Mariana Rocha', '789.456.123-78', 8800.90, DATE '1980-05-05', 3);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Luciano Tavares', '111.222.333-44', 5300.00, DATE '1993-08-17', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Patrícia Gomes', '222.333.444-55', 2950.30, DATE '1995-12-01', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Rafael Costa', '333.444.555-66', 4600.00, DATE '1989-04-12', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Juliana Martins', '444.555.666-77', 7200.25, DATE '1991-06-23', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Bruno Fernandes', '555.666.777-88', 8100.00, DATE '1987-09-10', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Larissa Oliveira', '666.777.888-99', 3900.40, DATE '1996-02-14', 0);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Vinícius Almeida', '777.888.999-00', 5100.75, DATE '1984-10-18', 2);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Camila Ribeiro', '888.999.000-11', 3400.00, DATE '1999-03-22', 1);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Diego Freitas', '999.000.111-22', 6800.00, DATE '1986-07-27', 3);
+INSERT INTO tb_client (name, cpf, income, birth_date, children) VALUES ('Renata Duarte', '000.111.222-33', 5700.20, DATE '1994-11-05', 0);
