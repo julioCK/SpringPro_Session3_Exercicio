@@ -21,7 +21,7 @@ public class ClientService {
 
     public ClientDTO findClientByID(Long id) {
         Optional<Client> clientOptional =  clientRepository.findById(id);
-        Client client = clientOptional.orElseThrow(() -> new ResourceNotFoundException("Entity not found: id " + id));
+        Client client = clientOptional.orElseThrow(() -> new ResourceNotFoundException("Entity not found: ID " + id));
         return ClientToDTO(client);
     }
 
