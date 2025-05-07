@@ -15,6 +15,8 @@ public class ClientDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    private Long id;
+
     @NotBlank(message = "Name must not be blank")
     @Size(min = 3, max = 50, message = "Name must have between 3 and 50 characters" )
     private String name;
@@ -29,12 +31,15 @@ public class ClientDTO implements Serializable {
     }
 
     public ClientDTO(Client client) {
+        id = client.getId();
         name = client.getName();
         cpf = client.getCpf();
         income = client.getIncome();
         birthDate = client.getBirthDate();
         children = client.getChildren();
     }
+
+    public Long getId(){return id;};
 
     public String getName() {
         return name;
