@@ -32,11 +32,9 @@ public class ControllerExceptionHandler {
         InvalidFieldConstraintError validationErrors = new InvalidFieldConstraintError(Instant.now(), statusCode.value(), "Invalid field data", request.getRequestURI());
 
         List<FieldError> fieldErrorList = e.getBindingResult().getFieldErrors();
-
         for(FieldError f : fieldErrorList) {
             validationErrors.addError(f.getField(), f.getDefaultMessage());
         }
-
         return ResponseEntity.status(statusCode). body(validationErrors);
     }
 }

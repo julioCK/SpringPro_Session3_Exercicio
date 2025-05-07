@@ -4,6 +4,7 @@ import com.juliock.SpringPro_Session3_Exercicio.dto.ClientDTO;
 import com.juliock.SpringPro_Session3_Exercicio.entities.Client;
 import com.juliock.SpringPro_Session3_Exercicio.repositories.ClientRepository;
 import com.juliock.SpringPro_Session3_Exercicio.services.Exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,20 +37,32 @@ public class ClientService {
     }
 
     @Transactional
-    public ClientDTO insertClient(ClientDTO clientDTO) {
-        Client client = convertDTOtoClient(clientDTO);
+    public ClientDTO insertClient(ClientDTO dto) {
+        Client client = new Client();
+        convertDTOtoClient(client, dto);
         client = clientRepository.save(client);
         return new ClientDTO(client);
     }
 
-    private Client convertDTOtoClient(ClientDTO clientDTO) {
-        Client client = new Client();
+    @Transactional
+    public ClientDTO updateClient(Long id, ClientDTO dto) {
+        try {
+            Client client = clientRepository.getReferenceById(id);
+            convertDTOtoClient(client, dto);
+            client = clientRepository.save(client);
+            return new ClientDTO(client);
+        }
+        catch(EntityNotFoundException e) {
+            throw new ResourceNotFoundException("The client with provided ID does not exists");
+        }
+    }
+
+    @Transactional
+    private void convertDTOtoClient(Client client, ClientDTO clientDTO) {
         client.setName(clientDTO.getName());
         client.setCpf(clientDTO.getCpf());
         client.setIncome(clientDTO.getIncome());
         client.setBirthDate(clientDTO.getBirthDate());
         client.setChildren(clientDTO.getChildren());
-
-        return client;
     }
 }
