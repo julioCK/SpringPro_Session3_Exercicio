@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -53,8 +54,16 @@ public class ClientService {
             return new ClientDTO(client);
         }
         catch(EntityNotFoundException e) {
-            throw new ResourceNotFoundException("The client with provided ID does not exists");
+            throw new ResourceNotFoundException("The client with provided ID does not exist");
         }
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void deleteClient(Long id) throws IllegalArgumentException {
+        if(clientRepository.existsById(id))
+            clientRepository.deleteById(id);
+        else
+            throw new ResourceNotFoundException("The client with provided ID does not exist");
     }
 
     @Transactional
@@ -65,4 +74,5 @@ public class ClientService {
         client.setBirthDate(clientDTO.getBirthDate());
         client.setChildren(clientDTO.getChildren());
     }
+
 }

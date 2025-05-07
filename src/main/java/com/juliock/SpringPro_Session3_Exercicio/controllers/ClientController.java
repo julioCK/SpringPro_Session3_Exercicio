@@ -2,10 +2,12 @@ package com.juliock.SpringPro_Session3_Exercicio.controllers;
 
 import com.juliock.SpringPro_Session3_Exercicio.dto.ClientDTO;
 import com.juliock.SpringPro_Session3_Exercicio.services.ClientService;
+import com.juliock.SpringPro_Session3_Exercicio.services.Exceptions.ResourceNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -47,5 +49,17 @@ public class ClientController {
     public ResponseEntity<ClientDTO> update(@PathVariable Long id, @Valid @RequestBody ClientDTO dto) {
         dto = clientService.updateClient(id, dto);
         return ResponseEntity.ok(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        try {
+            clientService.deleteClient(id);
+            HttpStatus statusCode = HttpStatus.NO_CONTENT;
+            return ResponseEntity.status(statusCode).build();
+        }
+        catch(IllegalArgumentException e) {
+            throw new ResourceNotFoundException("Client with provided ID does not exists");
+        }
     }
 }
